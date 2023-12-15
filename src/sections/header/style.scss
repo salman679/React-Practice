@@ -1,0 +1,45 @@
+.header {
+    padding: 30px 0;
+}
+
+.header .header-content {
+    display: flex;
+    align-items: center;
+}
+
+.header .header-content .logo img {
+    max-width: 260px;
+    height: 60px;
+}
+
+.header .header-content .list a {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-left: 26px;
+    color: var(--bg-color);
+}
+
+.header .header-content .cart {
+    margin-left: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.header .header-content .cart svg {
+    font-size: 35px;
+    color: var(--primary-color);
+}
+
+.header .header-content .cart span {
+    position: absolute;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    top: -9px;
+    right: -10px;
+
+    /* transform: translateY(-50%); */
+}

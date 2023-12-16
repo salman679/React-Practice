@@ -1,6 +1,7 @@
+import "./style/style.scss";
 import Header from "./sections/header/Header";
 import Banner from "./sections/banner/Banner";
-import "./style/style.scss";
+import MainCart from "./sections/Main/MainCart";
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header />
       <Banner />
+      <MainCart />
     </>
   )
 }

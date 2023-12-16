@@ -7,6 +7,7 @@ let cssStyle = {
 }
 
 function Banner() {
+
     return (
         <>
             {

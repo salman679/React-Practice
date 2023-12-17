@@ -10,6 +10,7 @@ function MainCart() {
     let clickHandler = (data) => {
         setData(data);
     }
+
     return (
         <div className="food">
             <div className="content-heading">

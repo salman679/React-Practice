@@ -1,5 +1,9 @@
 .header {
     padding: 30px 0;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 99999;
 }
 
 .header .header-content {
@@ -72,7 +76,8 @@
 }
 
 .cartModel .amount-area span {
-    margin-left: 5px;
+    margin-left: 4px;
+    margin-top: -2px;
     display: inline-block;
 }
 
@@ -81,8 +86,8 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border: 1px solid var(--primary-color);
     border-radius: 50%;
     font-size: 12px;
@@ -103,11 +108,12 @@
     border-top: 0;
 }
 
-.cartModel .action i {
+.cartModel .action svg {
     color: var(--primary-color);
+    font-size: 21px;
 }
 
-.cartModel .action i:hover {
+.cartModel .action svg:hover {
     color: #000000be;
 }
 

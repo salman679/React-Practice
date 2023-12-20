@@ -1,8 +1,9 @@
 .header {
-    padding: 30px 0;
+    padding: 15px 0;
     position: sticky;
     top: 0;
     background-color: #fff;
+    box-shadow: 0 0 20px #ccc;
     z-index: 99999;
 }
 
@@ -48,8 +49,16 @@
     /* transform: translateY(-50%); */
 }
 
+.cartModel {
+    margin-top: 70px;
+}
+
 .cartModel .modal-header {
     border-bottom: 0;
+}
+
+.cartModel .modal-body {
+    padding-bottom: 0;
 }
 
 .cartModel .modal-body h3 {
@@ -76,7 +85,8 @@
 }
 
 .cartModel .amount-area span {
-    margin-left: 4px;
+    margin-left: 3px;
+    margin-right: 4px;
     margin-top: -2px;
     display: inline-block;
 }
@@ -122,4 +132,8 @@
     width: 10.94px;
     height: 10.94px;
     color: var(--primary-color);
+}
+
+.text-end {
+    border-top: 1px solid rgba(0, 0, 0, 0.2)
 }

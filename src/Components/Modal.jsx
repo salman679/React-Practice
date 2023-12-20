@@ -1,21 +1,51 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import cardContext from "../data/CardContext";
 
-
 function Modal() {
     let modalDiv = document.getElementById('modal');
     let cardCtx = useContext(cardContext)
 
+    let price = (n) => {
+        return n.toFixed(2)
+    }
+
     let deleteHandler = (item) => {
         cardCtx.removeCard(item)
+
+        let activeData = item.id
+
+        let updateData = cardCtx.mainItem.map(updateItem => {
+            if (updateItem.id == activeData) {
+                return {
+                    ...updateItem,
+                    active: false
+                }
+            } else {
+                return updateItem
+            }
+        })
+
+        cardCtx.mainItemUpdate(updateData)
+    }
+
+    let plusHandler = (id, n) => {
+        let amount = n + 1
+        let amountNumber = amount <= 20 ? amount : 20
+        cardCtx.updateCard(id, amountNumber)
+    }
+
+    let minusHandler = (id, n) => {
+        let amount = n - 1
+        let amountNumber = amount >= 1 ? amount : 1
+        cardCtx.updateCard(id, amountNumber)
     }
 
     let clearHandler = () => {
-        cardCtx.clearCard
+        cardCtx.clearCard()
     }
 
     return (
@@ -28,7 +58,7 @@ function Modal() {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body pt-0 border-0">
-                                <h3 className="pb-5 text-center">Your Cart Items</h3>
+                                <h3 className="pb-4 text-center">Your Cart Items</h3>
                                 <table className="table table-hover table-bordered">
                                     <thead>
                                         <tr>
@@ -58,25 +88,25 @@ function Modal() {
                                                             <span>{item.title}</span>
                                                         </td>
                                                         <td>
-                                                            <span>${(item.price).toFixed(2)}</span>
+                                                            <span>${price(item.price)}</span>
                                                         </td>
                                                         <td>
                                                             <div className="amount-area">
-                                                                <span className="amount me-1">1</span>
+                                                                <span className="amount me-1">{item.amount}</span>
                                                                 <div className="plus">
-                                                                    <span>
+                                                                    <span onClick={() => plusHandler(item.id, item.amount)}>
                                                                         <FaPlus />
                                                                     </span>
                                                                 </div>
                                                                 <div className="minus">
-                                                                    <span>
+                                                                    <span onClick={() => minusHandler(item.id, item.amount)}>
                                                                         <FaMinus />
                                                                     </span>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <span>$14.00</span>
+                                                            <span>${price(item.total())}</span>
                                                         </td>
                                                         <td>
                                                             <div className="action deletebtn">
@@ -90,9 +120,9 @@ function Modal() {
                                 </table>
                             </div>
                             <div className="modal-footer">
-                                <h3 className="w-100 text-end pb-3">Total Amount: $<span id="fainal_total">0</span></h3>
+                                <h3 className="w-100 text-end">Total Amount: $<span>{cardCtx.totalAmount()}</span></h3>
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Checkout</button>
-                                <button id="clearcart" type="button" onClick={clearHandler} className="btn btn-primary">Clear</button>
+                                <button type="button" onClick={clearHandler} className="btn btn-primary">Clear</button>
                             </div>
                         </div>
                     </div>

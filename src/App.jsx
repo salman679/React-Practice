@@ -5,7 +5,6 @@ import MainCart from "./sections/Main/MainCart";
 import CardProviders from "./data/CardProviders";
 
 function App() {
-
   return (
     <>
       <CardProviders>

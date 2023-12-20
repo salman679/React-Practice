@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import cardContext from './CardContext'
+import { cardData } from '../sections/CardItem/data';
 
 function CardProviders(props) {
 
     let [items, setItems] = useState([])
+    let [mainItem, setMainItems] = useState(cardData)
 
     let addCard = (item) => {
 
@@ -19,7 +21,30 @@ function CardProviders(props) {
                 item
             ]
         }
+
+        // if (exist) {
+        //     updateData = [{
+        //         ...item,
+        //         active: false
+        //     }]
+        // }
+
         setItems(updateData)
+    }
+
+    let updateCard = (id, amount) => {
+        let updateItem = items.map((item) => {
+            if (item.id == id) {
+                return {
+                    ...item,
+                    amount: amount
+                }
+            } else {
+                return item
+            }
+        })
+
+        setItems(updateItem)
     }
 
     let removeCard = (item) => {
@@ -30,13 +55,41 @@ function CardProviders(props) {
         setItems(updateItems)
     }
 
-    let clearCard = () => {
+    let mainItemUpdate = (items) => {
+        setMainItems(items)
+    }
 
+    let totalAmount = () => {
+        let priceList = items.map((item) => {
+            return item.total()
+        })
+
+        let amountSum = priceList.reduce((total, number) => {
+            return total + number
+        }, 0)
+
+        return amountSum
+    }
+
+    let clearCard = () => {
+        setItems([])
+
+        let updateMainItem = mainItem.map((items) => {
+            return {
+                ...items,
+                active: false
+            }
+        })
+
+        setMainItems(updateMainItem)
     }
 
     let cardContextValue = {
         item: items,
-        totalAmount: 0,
+        mainItem: mainItem,
+        mainItemUpdate: mainItemUpdate,
+        updateCard: updateCard,
+        totalAmount: totalAmount,
         addCard: addCard,
         removeCard: removeCard,
         clearCard: clearCard

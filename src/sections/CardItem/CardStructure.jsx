@@ -1,10 +1,12 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 function CardStructure(props) {
+
     const addToCard = (e) => {
         e.preventDefault()
-        e.target.classList.add('adedd')
-        props.onAddItem(props)
+        // e.target.classList.add('added')
+        // e.target.innerHTML = 'Already Added'
+        props.onAddItem()
     }
 
     return (
@@ -31,7 +33,16 @@ function CardStructure(props) {
                         </div>
                     </div>
                     <div className="food-btn">
-                        <a data-id="01" className="add-to-cart-btn" href="#" onClick={addToCard}>Add to cart</a>
+                        <a
+                            data-id="01"
+                            id="cngText"
+                            className={`add-to-cart-btn ${props.active ? "added" : ''}`}
+                            // className={`add-to-cart-btn ${props.active ? "added" && "#cngText.innerHTML" + "=" + 'Already Added' : '' && "#cngText.innerHTML" + "=" + 'Add To Card'}`}
+                            href="#"
+                            onClick={addToCard}
+                        >
+                            Add to cart
+                        </a>
                     </div>
                 </div>
             </div>
